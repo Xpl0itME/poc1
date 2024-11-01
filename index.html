@@ -3,45 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main Page</title>
+  <title>Main Page - Control Pop-Up</title>
 </head>
 <body>
-  <h1>Home Page</h1>
-  <button onclick="openPopup()">Open Popup</button>
-  
-  <h2>Control Pop-up</h2>
-  <button onclick="hidePopupButton()">Hide Button in Popup</button>
-  <button onclick="showPopupButton()">Show Button in Popup</button>
-  <br><br>
-  <label for="colorPicker">Change Button Color in Popup:</label>
-  <input type="color" id="colorPicker" onchange="changePopupButtonColor(this.value)">
+  <h1>Control Pop-up Window</h1>
+  <button onclick="openFacebookPopup()">Open Facebook</button>
+  <button onclick="closeFacebookPopup()">Close Facebook Pop-up</button>
 
   <script>
     let popup;
 
-    // Function to open the pop-up window
-    function openPopup() {
-      popup = window.open("popup.html", "Popup", "width=400,height=400");
+    // Function to open the Facebook pop-up
+    function openFacebookPopup() {
+      // Open Facebook in a new pop-up window
+      popup = window.open("https://www.facebook.com", "FacebookPopup", "width=800,height=600");
     }
 
-    // Function to hide the button in the pop-up
-    function hidePopupButton() {
+    // Function to close the Facebook pop-up
+    function closeFacebookPopup() {
       if (popup && !popup.closed) {
-        popup.postMessage({ action: "hide" }, "*");
-      }
-    }
-
-    // Function to show the button in the pop-up
-    function showPopupButton() {
-      if (popup && !popup.closed) {
-        popup.postMessage({ action: "show" }, "*");
-      }
-    }
-
-    // Function to change the button color in the pop-up
-    function changePopupButtonColor(color) {
-      if (popup && !popup.closed) {
-        popup.postMessage({ action: "changeColor", color: color }, "*");
+        popup.close();
+      } else {
+        alert("Facebook pop-up is not open!");
       }
     }
   </script>

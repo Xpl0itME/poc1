@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Page</title>
+</head>
+<body>
+  <h2>Popup Page</h2>
+  <button id="popupButton">Controlled Button</button>
+
+  <script>
+    // Function to handle messages from the main page
+    window.addEventListener("message", (event) => {
+      // Ensure only messages from the same origin are processed
+      if (event.origin !== window.location.origin) return;
+      
+      const { action, color } = event.data;
+
+      const button = document.getElementById("popupButton");
+      if (action === "hide") {
+        button.style.display = "none";
+      } else if (action === "show") {
+        button.style.display = "inline-block";
+      } else if (action === "changeColor") {
+        button.style.backgroundColor = color;
+      }
+    });
+  </script>
+</body>
+</html>
